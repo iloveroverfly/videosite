@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iloveroverfly.videosite.modules.user.dao.UserHandleDao">
+
+    <!-- 插入用户 -->
+    <insert id="insert">
+		INSERT INTO sys_user(
+			id, 
+			company_id, 
+			office_id, 
+			login_name, 
+			password, 
+			no, 
+			name, 
+			email, 
+			phone, 
+			mobile, 
+			user_type, 
+			create_by, 
+			create_date, 
+			update_by, 
+			update_date, 
+			remarks, 
+			login_flag, 
+			photo, 
+			del_flag
+		) VALUES (
+			#{id}, 
+			#{company},
+			#{office},
+			#{loginName}, 
+			#{password}, 
+			#{no}, 
+			#{name}, 
+			#{email}, 
+			#{phone}, 
+			#{mobile}, 
+			#{userType}, 
+			#{createBy},
+			#{createDate}, 
+			#{updateBy},
+			#{updateDate}, 
+			#{remarks}, 
+			#{loginFlag}, 
+			#{photo}, 
+			#{delFlag}
+		)
+	</insert>
+
+    <select id="queryForUpdate">
+       SELECT * FROM sys_user WHERE id = #{id} FOR UPDATE
+	</select>
+
+    <!-- 更新用户 -->
+    <update id="update">
+		UPDATE sys_user SET 
+			company_id = #{company},
+			office_id = #{office},
+			login_name = #{loginName},
+			password = #{password},
+			no = #{no},
+			name = #{name}, 
+			email = #{email}, 
+			phone = #{phone}, 
+			mobile = #{mobile}, 
+			user_type = #{userType}, 
+			update_by = #{updateBy},
+			update_date = #{updateDate}, 
+			remarks = #{remarks},
+			login_flag = #{loginFlag},
+			photo = #{photo}
+		WHERE id = #{id}
+	</update>
+
+    <!-- 逻辑删除用户 -->
+    <update id="delete">
+		UPDATE sys_user SET 
+			del_flag = #{DEL_FLAG_DELETE}
+		WHERE id = #{id}
+	</update>
+</mapper>
